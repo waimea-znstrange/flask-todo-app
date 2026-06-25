@@ -17,10 +17,10 @@
 
 class CreatureTable:
 
-    NAME = "creatures"
+    NAME = "tasks"
 
     SCHEMA = """
-        CREATE TABLE creatures (
+        CREATE TABLE tasks (
             id      INTEGER PRIMARY KEY AUTOINCREMENT,
             species TEXT NOT NULL,
             name    TEXT NOT NULL
@@ -28,7 +28,7 @@ class CreatureTable:
     """
 
     SEED_DATA = """
-        INSERT INTO creatures (species, name)
+        INSERT INTO tasks (id, name, priority, complete)
         VALUES
             ("Dragon",  "Pippa"),
             ("Unicorn", "Barry"),

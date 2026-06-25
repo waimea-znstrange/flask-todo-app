@@ -1,0 +1,29 @@
+{#=====================================================
+  Creature List page
+=====================================================#}
+
+{% extends 'pages/_base.jinja' %}
+
+
+{% block content %}
+
+    <h2>List of Tasks</h2>
+
+    <ul class="task-list">
+
+        {% for task in tasks %}
+
+            <li class="task"> 
+                
+                <span class="priority">{{ task.priority }}</span> 
+                
+                <span class="name">{{ task.name }}</span> 
+            
+            </li> 
+            
+        {% endfor %} 
+    
+    </ul>
+
+{% endblock %}
+

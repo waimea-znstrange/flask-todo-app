@@ -29,19 +29,19 @@ def show_welcome():
 
 
 #-----------------------------------------------------------
-# Creature list page - Show all the creatures
+# Task list page - Show all the tasks
 #-----------------------------------------------------------
-@app.get("/creatures")
-def show_all_creatures():
+@app.get("/tasks")
+def show_all_tasks():
     with connect_db() as db:
         sql = """
-            SELECT id, species, name
-            FROM creatures
+            SELECT id, name, priority, complete
+            FROM tasks
         """
         params = ()
         creatures = db.execute(sql, params).fetchall()
 
-        return render_template("pages/creature_list.jinja", creatures=creatures)
+        return render_template("pages/task_list.jinja", tasks=tasks)
 
 
 #-----------------------------------------------------------
