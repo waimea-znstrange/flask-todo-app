@@ -29,6 +29,58 @@ def show_welcome():
 
 
 #-----------------------------------------------------------
+# New task form
+#-----------------------------------------------------------
+@app.get("/task/new")
+def show_task_form():
+    return render_template("pages/task_form.jinja")
+
+
+#-----------------------------------------------------------
+# Handle the task form
+#-----------------------------------------------------------
+@app.post("/task/new")
+def process_task_form():
+    # Get the form data
+    species = request.form.get("priority", "unknown").strip()
+    name = request.form.get("name", "unknown").strip()
+    # Connect to the DB
+    with connect_db() as db:
+
+        sql = """
+            INSERT INTO tasks (priority, name)
+            VALUES (?, ?)
+        """
+
+        params = (species, name)
+
+        # Run the query
+        db.execute(sql, params)
+
+        flash(f"task {name} added successfully")
+        # We're done so back to the list
+        return redirect("/tasks")
+
+
+#-----------------------------------------------------------
+# Task deletion - Delete a creature via ID
+#-----------------------------------------------------------
+@app.get("/creature/<int:id>/delete")
+def delete_a_creature(id):
+    with connect_db() as db:
+        sql = """
+            DELETE FROM tasks
+            WHERE id=?
+        """
+        params = (id,)
+        db.execute(sql, params)
+
+        # Back to the list
+        flash("task deleted", "success")
+        return redirect("/tasks")
+
+
+#-----------------------------------------------------------
 # Task list page - Show all the tasks
 #-----------------------------------------------------------
 @app.get("/tasks")

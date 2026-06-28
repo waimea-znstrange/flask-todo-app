@@ -15,24 +15,25 @@
 #     SEED_DATA = "INSERT INTO name (...)" or None
 #----------------------------------------------------------------------------
 
-class CreatureTable:
+class TaskTable:
 
     NAME = "tasks"
 
     SCHEMA = """
         CREATE TABLE tasks (
-            id      INTEGER PRIMARY KEY AUTOINCREMENT,
-            species TEXT NOT NULL,
-            name    TEXT NOT NULL
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            name        TEXT NOT NULL,
+            priority    INTEGER NOT NULL DEFAULT 3,
+            complete    BOOLEAN (INTEGER) NOT NULL DEFAULT 0
         )
     """
 
     SEED_DATA = """
         INSERT INTO tasks (id, name, priority, complete)
         VALUES
-            ("Dragon",  "Pippa"),
-            ("Unicorn", "Barry"),
-            ("Vampire", "Helen")
+            ("Feed the dog",  "1")
+            ("Do the dishes", "2"),
+            ("Pet the cat",   "3"),
     """
 
 # Add more table classes here...
@@ -55,7 +56,7 @@ class CreatureTable:
 #----------------------------------------------------------------------------
 
 TABLES = [
-    CreatureTable,
+    TaskTable,
     # Add more tables here...
 ]
 
