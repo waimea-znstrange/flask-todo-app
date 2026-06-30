@@ -24,7 +24,7 @@ class TaskTable:
             id          INTEGER PRIMARY KEY AUTOINCREMENT,
             name        TEXT NOT NULL,
             priority    INTEGER NOT NULL DEFAULT 3,
-            complete    BOOLEAN (INTEGER) NOT NULL DEFAULT 0
+            complete    BOOLEAN NOT NULL DEFAULT 0
         )
     """
 

@@ -20,13 +20,6 @@ app = Flask(__name__)
 # App Routes Handlers
 #===========================================================
 
-#-----------------------------------------------------------
-# Welcome page
-#-----------------------------------------------------------
-@app.get("/")
-def show_welcome():
-    return render_template("pages/welcome.jinja")
-
 
 #-----------------------------------------------------------
 # New task form
@@ -42,7 +35,7 @@ def show_task_form():
 @app.post("/task/new")
 def process_task_form():
     # Get the form data
-    species = request.form.get("priority", "unknown").strip()
+    priority = request.form.get("priority", "unknown").strip()
     name = request.form.get("name", "unknown").strip()
     # Connect to the DB
     with connect_db() as db:
@@ -63,10 +56,10 @@ def process_task_form():
 
 
 #-----------------------------------------------------------
-# Task deletion - Delete a creature via ID
+# Task deletion - Delete a task via ID
 #-----------------------------------------------------------
-@app.get("/creature/<int:id>/delete")
-def delete_a_creature(id):
+@app.get("/task/<int:id>/delete")
+def delete_a_task(id):
     with connect_db() as db:
         sql = """
             DELETE FROM tasks
@@ -91,7 +84,7 @@ def show_all_tasks():
             FROM tasks
         """
         params = ()
-        creatures = db.execute(sql, params).fetchall()
+        tasks = db.execute(sql, params).fetchall()
 
         return render_template("pages/task_list.jinja", tasks=tasks)
 

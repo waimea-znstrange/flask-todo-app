@@ -1,0 +1,28 @@
+{#=====================================================
+  New Task form page
+=====================================================#}
+
+{% extends 'pages/_base.jinja' %}
+
+
+{% block content %}
+
+  <h2>New Task</h2>
+
+  <form method="post" action="/task/new">
+    <label>
+      Name
+      <input type="text" name="name" required>
+    </label>
+
+    <label>
+      Priority
+      <input type="text" name="priority" required>
+    </label>
+
+    <button>Add Task</button>
+  
+  </form>
+
+{% endblock %}
+
