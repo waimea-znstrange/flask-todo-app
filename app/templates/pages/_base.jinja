@@ -11,7 +11,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Task Master {% block title %}{% endblock %}</title>
+	<title>Task Master{% block title %}{% endblock %}</title>
 
     <link rel="icon" href="/static/images/icon.svg">
 
@@ -25,12 +25,16 @@
 <body>
 
     <header>
-        <a href="/">
+        <a href="/task">
             <img src="/static/images/icon.svg" alt="Task Icon" class="logo">
         </a>
 
         <h1>Task Master</h1>
-            
+
+        <nav>
+            <a href="/task">Tasks</a>
+        </nav>
+
     </header>
 
     {# Show flash messages from any previous events #}

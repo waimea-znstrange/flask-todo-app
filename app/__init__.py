@@ -45,7 +45,7 @@ def process_task_form():
             VALUES (?, ?)
         """
 
-        params = (species, name)
+        params = (priority, name)
 
         # Run the query
         db.execute(sql, params)
@@ -74,9 +74,9 @@ def delete_a_task(id):
 
 
 #-----------------------------------------------------------
-# Task list page - Show all the tasks
+# Task list - Show all the tasks
 #-----------------------------------------------------------
-@app.get("/tasks")
+@app.get("/task")
 def show_all_tasks():
     with connect_db() as db:
         sql = """
